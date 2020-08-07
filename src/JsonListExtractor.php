@@ -30,6 +30,11 @@ class JsonListExtractor
         $this->extract();
     }
 
+    public function getCategoryNamesMap(): array
+    {
+        return $this->categoryNamesMap;
+    }
+
     /**
      * @throws Exception
      */
@@ -48,10 +53,5 @@ class JsonListExtractor
                 $this->categoryNamesMap[$entry['category_id']] = $name;
             }
         }
-    }
-
-    public function getCategoryNamesMap(): array
-    {
-        return $this->categoryNamesMap;
     }
 }
