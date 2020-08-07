@@ -1,4 +1,20 @@
-<?php
+<h1>Zadanie 1</h1>
+
+Wymaga wersja: PHP >= 7.4.
+
+Potrzebne jest załadowanie zależności
+```console
+composer install
+```
+
+Skrypt można odpalić poprzez komende
+```console
+php index.php
+```
+
+lub jako niezależny komponent
+
+```php
 
 require_once 'vendor/autoload.php';
 
@@ -19,3 +35,7 @@ $parser->parse();
 
 //rewind($outputFileHandler);
 //echo '<pre>' . print_r(fread($outputFileHandler, fstat($outputFileHandler)['size'])) . '</pre>';
+```
+
+Gotowy JSON umieszczony jest w pliku 'output/result.json'.<br>
+W razie problemów z działaniem, sprawdź uprawnienia.

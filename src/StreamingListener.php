@@ -1,9 +1,10 @@
 <?php
 
-namespace JsonParser;
+namespace JsonLib;
 
 use JsonStreamingParser\Listener\ListenerInterface;
-use phpDocumentor\Reflection\Types\Callable_;
+use Throwable;
+
 
 class StreamingListener implements ListenerInterface
 {
@@ -13,16 +14,16 @@ class StreamingListener implements ListenerInterface
     private bool $keyHasBeenWritten = false;
     private string $lastKey = '';
 
-    /** @var callable */
+    /** @var callable|null */
     private $callback;
 
 
     /**
      * @param resource $stream
      * @param callable $callback
-     * @throws \Throwable
+     * @throws Throwable
      */
-    public function __construct($stream, callable $callback)
+    public function __construct($stream, ?callable $callback = null)
     {
         if (!is_resource($stream) || get_resource_type($stream) !== 'stream') {
             throw new \InvalidArgumentException(sprintf(
@@ -33,7 +34,7 @@ class StreamingListener implements ListenerInterface
 
         $meta = stream_get_meta_data($stream);
 
-        if ($meta['mode'] !== 'w+') {
+        if (!preg_match('/.*w\+.*/', $meta['mode'])) {
             throw new \Exception('You must specify the stream mode as w+');
         }
 
@@ -93,7 +94,9 @@ class StreamingListener implements ListenerInterface
             fwrite($this->stream, "\"$value\"");
         }
 
-        call_user_func($this->callback, $this->stream, $this->lastKey, $value);
+        if (!is_null($this->callback)) {
+            call_user_func($this->callback, $this->stream, $this->lastKey, $value);
+        }
 
         fwrite($this->stream, ',');
     }

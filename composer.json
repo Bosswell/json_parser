@@ -1,11 +1,21 @@
 {
+    "name": "jakub/rekrutacja-zadanie-1",
+    "description": "Parser dla plików JSON",
+    "type": "project",
+    "authors": [
+        {
+            "name": "Jakub Batko",
+            "email": "bosswell9@gmail.com"
+        }
+    ],
     "autoload": {
         "psr-4": {
-            "JsonParser\\": "src/"
+            "JsonLib\\": "src/"
         }
     },
     "require": {
-        "salsify/json-streaming-parser": "^8.2"
+        "salsify/json-streaming-parser": "^8.2",
+        "ext-json": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "7"
