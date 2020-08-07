@@ -2,17 +2,17 @@
 
 Wymaga wersja: PHP >= 7.4.
 
-Potrzebne jest załadowanie zależności
+Załaduj zależności
 ```console
 composer install
 ```
 
-Skrypt można odpalić poprzez komende
+Odpal skrypt
 ```console
 php index.php
 ```
 
-lub jako niezależny komponent
+Wykorzystaj jako niezależny komponent
 
 ```php
 
